@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class Menu {
-
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		int i=0;
@@ -18,28 +17,48 @@ public class Menu {
 			case 1:
 				continue;
 			case 2:
-				System.out.println("Enter the Item Name:");
-				String itemName=in.next();
-				System.out.println("Enter the quantity of Item:");
-				int itemQuantity=in.nextInt();
+				AddItems();
 				break;
 			case 3:
-				System.out.println("Enter the Item Name:");
-				String itemName2=in.next();
-				itemName=null;
+				DeleteItems();
 				break;
 			case 4:
-				System.out.println("Enter the Item Name:");
-				String itemName3=in.next();
-				System.out.println("Enter the quantity of Item:");
-				int itemQuantity3=in.nextInt();
-				itemQuantity=itemQuantity3;
+				EditItems();
 				break;
 			case 5:
-				System.out.println("Item List:");
+				ItemList();
 				break;
 			}
 		}
 	}
-
+	public static void AddItems() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the Item Name:");
+		String itemName=in.next();
+		System.out.println(itemName);
+		System.out.println("Enter the Identification Number of Item:");
+		int itemNumber=in.nextInt();
+		System.out.println(itemNumber);
+		System.out.println("Enter the quantity of Item:");
+		int itemQuantity=in.nextInt();
+		System.out.println(itemQuantity);
+	}
+	public static void DeleteItems() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the Item Name:");
+		String itemName=in.next();
+		System.out.println(itemName);
+	}
+	public static void EditItems() {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the Item Name:");
+		String itemName=in.next();
+		System.out.println(itemName);
+		System.out.println("Enter the quantity of Item:");
+		int itemQuantity=in.nextInt();
+		System.out.println(itemQuantity);
+	}
+	public static void ItemList() {
+		System.out.println("Item List:");
+	}
 }
