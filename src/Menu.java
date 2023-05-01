@@ -5,15 +5,14 @@ public class Menu {
 		ItemMannerger itemMannerger=new ItemMannerger(in);
 		int i=0;
 		
-		while(i!=7) {
+		while(i!=6) {
 			System.out.println("1.Menu:");
 			System.out.println("2.Add Item");
 			System.out.println("3.Delete Item");
 			System.out.println("4.Edit Item");
 			System.out.println("5.View Item");
-			System.out.println("6.View Item List");
-			System.out.println("7.Exit");
-			System.out.println("Select number between 1-7:");
+			System.out.println("6.Exit");
+			System.out.println("Select number between 1-6:");
 			i=in.nextInt();
 			switch(i) {
 			case 1:
@@ -29,9 +28,6 @@ public class Menu {
 				break;
 			case 5:
 				itemMannerger.ViewItem();
-				break;
-			case 6:
-				itemMannerger.ItemList();
 				break;
 			}
 		}

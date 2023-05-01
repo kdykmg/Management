@@ -1,29 +1,16 @@
 import java.util.Scanner;
 
-public class Item {
-	protected int itemNumber;
-	protected String itemName;
-	protected int itemQuantity;
+public class FoodItem extends Item{
+	protected int expirationDate;
 	
-		
-	public int getItemNumber() {
-		return itemNumber;
+	public int getExpirationDate() {
+		return expirationDate;
 	}
-	public void setItemNumber(int itemNumber) {
-		this.itemNumber = itemNumber;
+
+	public void setExpirationDate(int expirationDate) {
+		this.expirationDate = expirationDate;
 	}
-	public String getItemName() {
-		return itemName;
-	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-	public int getItemQuantity() {
-		return itemQuantity;
-	}
-	public void setItemQuantity(int itemQuantity) {
-		this.itemQuantity = itemQuantity;
-	}
+
 	public void getInput(Scanner in) {
 		System.out.println("Enter the Identification Number of Item:");
 		int itemNumber=in.nextInt();
