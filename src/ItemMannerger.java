@@ -10,7 +10,7 @@ public class ItemMannerger {
 	public void AddItems() {
 		System.out.println("is Item is food? 1.Yes/2.No");
 		int kind=0;
-		Item item;
+		ETCItem item;
 		while(kind!=1&&kind!=2) {
 			kind=in.nextInt();
 			if(kind==1) {
@@ -20,7 +20,7 @@ public class ItemMannerger {
 				break;
 			}
 			else {
-				item=new Item();
+				item=new ETCItem();
 				item.getInput(in,itemList);
 				itemList.add(item);
 				break;
@@ -93,7 +93,8 @@ public class ItemMannerger {
 			System.out.println("there is no itemnumber");
 			return;
 		}
-		itemList.get(index).printInfo();
+		ETCItem item= (ETCItem)itemList.get(index);
+		item.printInfo();
 	}
 	public int itemCheck() {
 		System.out.println("Enter the Identification Number of Item:");

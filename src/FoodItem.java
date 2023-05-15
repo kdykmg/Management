@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FoodItem extends Item{
+public class FoodItem extends ETCItem implements ItemInfo{
 
 	public void getInput(Scanner in,ArrayList<Item>itemList) {
 		super.getInput(in,itemList);
