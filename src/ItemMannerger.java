@@ -1,14 +1,20 @@
 import java.util.Scanner;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-public class ItemMannerger {
+public class ItemMannerger implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	ArrayList<Item> itemList=new ArrayList<Item>();
-	Scanner in;
+	transient Scanner in;
 	ItemMannerger(Scanner in){
 		this.in=in;
 	}
-	public void AddItems() {
+	public void AddItems(EventLog logger) {
 		System.out.println("is Item is food? 1.Yes/2.No");
 		int kind=0;
 		ETCItem item;
@@ -19,12 +25,14 @@ public class ItemMannerger {
 					item=new FoodItem();
 					item.getInput(in,itemList);
 					itemList.add(item);
+					logger.log("Add Food Item");
 					break;
 				}
 				else {
 					item=new ETCItem();
 					item.getInput(in,itemList);
 					itemList.add(item);
+					logger.log("Add Item");
 					break;
 				}
 			}catch(InputMismatchException e) {
@@ -36,7 +44,7 @@ public class ItemMannerger {
 			}
 		}
 	}
-	public void DeleteItems() {
+	public void DeleteItems(EventLog logger) {
 		int index=itemCheck();
 		if(index==-1) {
 			System.out.println("there is no itemnumber");
@@ -45,9 +53,10 @@ public class ItemMannerger {
 		else {
 			System.out.println("Itemnumber '"+itemList.get(index).getItemNumber()+"' is delete");
 			itemList.remove(index);
+			logger.log("Delete Item");
 		}
 	}
-	public void EditItems() {
+	public void EditItems(EventLog logger) {
 		int index=itemCheck();
 		if(index==-1) {
 			System.out.println("there is no itemnumber");
@@ -81,9 +90,10 @@ public class ItemMannerger {
 					}
 				}
 			}
+			logger.log("Edit Item");
 		}
 	}
-	public void ViewItem() {
+	public void ViewItem(EventLog logger) {
 		int index=itemCheck();
 		if(index==-1) {
 			System.out.println("there is no itemnumber");
@@ -91,6 +101,7 @@ public class ItemMannerger {
 		}
 		ETCItem item= (ETCItem)itemList.get(index);
 		item.printInfo();
+		logger.log("View Item");
 	}
 	public void setItemNumber(int index) {
 		int itemNumber;
