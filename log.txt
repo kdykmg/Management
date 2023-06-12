@@ -1,0 +1,2 @@
+6월 12, 2023 11:01:23 오후 maneger.EventLog log
+정보: Add Food Item

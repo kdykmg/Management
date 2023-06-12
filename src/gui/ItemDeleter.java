@@ -8,20 +8,36 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class ItemDeleter extends JFrame{
-	public ItemDeleter() {
-		this.setSize(300,200);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+import listener.ButtonCancel;
+import listener.ButtonDeleteSave;
+import maneger.EventLog;
+import maneger.ItemMannerger;
+
+public class ItemDeleter extends JPanel{
+	
+	WindowFrame frame;
+	ItemMannerger itemMannerger;
+	EventLog logger;
+	
+	public ItemDeleter(WindowFrame frame,ItemMannerger itemMannerger,EventLog logger) {
+		
+		this.frame=frame;
+		this.itemMannerger=itemMannerger;
+		this.logger=logger;
+		
 		JPanel panel1=new JPanel();
 		JPanel panel2=new JPanel();
 		JPanel panel3=new JPanel();
-		JLabel label=new JLabel("Delete Item");
+		JLabel label=new JLabel("          Delete Item          ");
 		label.setFont(label.getFont().deriveFont(20.0f));
-		JTextField field=new JTextField(20);
+		JTextField field=new JTextField(30);
 		
 		JButton button1 =new JButton("Cancle");
 		JButton button2 =new JButton("Save");
 
+		button1.addActionListener(new ButtonCancel(frame));
+		button2.addActionListener(new ButtonDeleteSave(itemMannerger, frame, logger, field));
+		
 		JLabel label2=new JLabel("Item Number:");
 		panel1.add(label);
 		
@@ -34,6 +50,5 @@ public class ItemDeleter extends JFrame{
 		this.add(panel1,BorderLayout.NORTH);
 		this.add(panel2,BorderLayout.CENTER);
 		this.add(panel3,BorderLayout.SOUTH);
-		this.setVisible(true);
 	}
 }

@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package maneger;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import gui.WindowFrame;
 public class Menu {
 	static EventLog logger =new EventLog("log.txt");
 	public static void main(String[] args) {
@@ -14,40 +17,12 @@ public class Menu {
 		if(itemMannerger==null) {
 			itemMannerger=new ItemMannerger(in);
 		}
-		selectMenu(in,itemMannerger);
+		
+		WindowFrame window =new WindowFrame(itemMannerger,logger);
+
 		putObject(itemMannerger,"mannager.ser");
 	}
-	public static void selectMenu(Scanner in,ItemMannerger itemMannerger) {
-		int i=0;
-		while(i!=6) {
-			try {
-				viewMenu();
-				i=in.nextInt();
-				switch(i) {
-				case 1:
-					continue;
-				case 2:
-					itemMannerger.AddItems(logger);
-					break;
-				case 3:
-					itemMannerger.DeleteItems(logger);
-					break;
-				case 4:
-					itemMannerger.EditItems(logger);
-					break;
-				case 5:
-					itemMannerger.ViewItem(logger);
-					break;
-				}
-			}catch(InputMismatchException e) {
-				System.out.println("please Select number between 1-6");
-				if(in.hasNext()) {
-					in.next();
-				}
-				i=-1;
-			}
-		}
-	}
+	
 	public static void viewMenu() {
 		System.out.println("1.Menu:");
 		System.out.println("2.Add Item");

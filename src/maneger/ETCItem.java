@@ -1,3 +1,4 @@
+package maneger;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,41 +10,11 @@ public class ETCItem extends Item implements ItemInfo{
 		this.itemNumber = itemNumber;
 		this.itemName = itemName;
 		this.itemQuantity = itemQuantity;
+		this.expirationDate=0;
 	}
 	public void setItem(int expirationDate) {
 		this.kind=Kind.Food;
 		this.expirationDate = expirationDate;
-	}
-	
-	public int getInput(Scanner in,ArrayList<Item>itemList) {
-		System.out.println("Enter the Identification Number of Item:");
-		int itemNumber;
-		try {
-			itemNumber=in.nextInt();
-			int index=-1;
-			for(int i=0;i<itemList.size();i++) {
-				if(itemList.get(i).getItemNumber()==itemNumber) {
-					index=i;
-				}
-			}
-			if(index!=-1) {
-				System.out.println("there is already itemnumber");
-				return 0;
-			}
-		}catch(InputMismatchException c) {
-			System.out.println("please Enter a Number");
-			if(in.hasNext()) {
-				in.next();
-				itemNumber=-1;
-			}
-			getInput(in,itemList);
-			return 0;
-		}
-		System.out.println(itemNumber);
-		String itemName= getInputItemName(in,itemList);
-		int itemQuantity=getInputItemQuantity(in,itemList);
-		setItem(itemNumber,itemName,itemQuantity);
-		return 1;
 	}
 	public void printInfo() {
 		System.out.println("kind:"+getKind());

@@ -8,28 +8,52 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MenuGui extends JFrame{
-	MenuGui(){
-	this.setSize(400,300);
-	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	JPanel panel1=new JPanel();
-	JPanel panel2=new JPanel();
-	JLabel label=new JLabel("Menu Select");
-	label.setFont(label.getFont().deriveFont(20.0f));
+import listener.ButtonAdder;
+import listener.ButtonDeleter;
+import listener.ButtonEditer;
+import listener.ButtonView;
+import maneger.EventLog;
+import maneger.ItemMannerger;
+
+public class MenuGui extends JPanel{
 	
-	JButton button1 =new JButton("Add Item");
-	JButton button2 =new JButton("Delete Item");
-	JButton button3 =new JButton("Edit Item");
-	JButton button4 =new JButton("View Item");
-	JButton button5 =new JButton("EXIT");
-	panel1.add(label);
-	panel2.add(button1);
-	panel2.add(button2);
-	panel2.add(button3);
-	panel2.add(button4);
-	panel2.add(button5);
-	this.add(panel1,BorderLayout.NORTH);
-	this.add(panel2,BorderLayout.CENTER);
-	this.setVisible(true);
+	WindowFrame frame;
+	ItemMannerger itemMannerger;
+	EventLog logger;
+	
+	MenuGui(WindowFrame frame,ItemMannerger itemMannerger,EventLog logger){
+		this.frame=frame;
+		this.itemMannerger=itemMannerger;
+		this.logger=logger;
+		
+		this.setLayout(new BorderLayout());
+		JPanel panel1=new JPanel();
+		JPanel panel2=new JPanel();
+		JLabel label=new JLabel("Menu Select");
+		label.setFont(label.getFont().deriveFont(20.0f));
+		
+		JButton button1 =new JButton("Add Item");
+		JButton button2 =new JButton("Delete Item");
+		JButton button3 =new JButton("Edit Item");
+		JButton button4 =new JButton("View Item List");
+		JButton button5 =new JButton("EXIT");
+		
+		button1.addActionListener(new ButtonAdder(frame));
+		button2.addActionListener(new ButtonDeleter(frame));
+		button3.addActionListener(new ButtonEditer(frame));
+		button4.addActionListener(new ButtonView(frame, itemMannerger, logger));
+		
+		
+		panel1.add(label);
+		panel2.add(button1);
+		panel2.add(button2);
+		panel2.add(button3);
+		panel2.add(button4);
+		panel2.add(button5);
+		
+		
+		this.add(panel1,BorderLayout.NORTH);
+		this.add(panel2,BorderLayout.CENTER);
+
 	}
 }
